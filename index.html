@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Navidad</title>
+
+<style>
+:root {
+  --gold: #e6c36a;
+  --blue-night: #020617;
+  --deep-night: #00010a;
+  --card: #070b18;
+  --accent: #7dd3fc;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Courier New", monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at bottom, #020617, var(--deep-night));
+}
+
+/* 🌌 Estrellas */
+.stars {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1px 1px at 10% 20%, white, transparent),
+    radial-gradient(1px 1px at 30% 80%, white, transparent),
+    radial-gradient(1px 1px at 70% 40%, white, transparent),
+    radial-gradient(2px 2px at 90% 10%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent);
+  background-size: 200px 200px;
+  animation: twinkle 6s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .5; }
+  to { opacity: 1; }
+}
+
+/* 🌌 Aurora sutil */
+.aurora {
+  position: absolute;
+  width: 140%;
+  height: 140%;
+  background:
+    radial-gradient(ellipse at top, rgba(125,211,252,.18), transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(230,195,106,.15), transparent 65%);
+  animation: auroraMove 30s ease-in-out infinite alternate;
+  filter: blur(80px);
+}
+
+@keyframes auroraMove {
+  from { transform: translate(-10%, -10%) rotate(0deg); }
+  to   { transform: translate(10%, 10%) rotate(6deg); }
+}
+
+/* ❄️ Nieve */
+.snowflake {
+  position: absolute;
+  top: -10px;
+  color: white;
+  opacity: .6;
+  animation: snow linear infinite;
+}
+
+@keyframes snow {
+  to { transform: translateY(110vh); }
+}
+
+/* 📱 Card */
+.card {
+  width: 390px;
+  height: 700px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.04), transparent),
+    linear-gradient(180deg, #0b1020, var(--card));
+  border-radius: 30px;
+  padding: 24px;
+  box-shadow: 0 50px 100px rgba(0,0,0,.95);
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* ✨ Light sweep */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.08), transparent);
+  animation: sweep 8s infinite;
+}
+
+@keyframes sweep {
+  from { transform: translateX(-140%); }
+  to   { transform: translateX(140%); }
+}
+
+/* 🎄 Title */
+.title {
+  text-align: center;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: .6px;
+  position: relative;
+  z-index: 3;
+}
+
+/* 🎅 Santa */
+.santa-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  animation: santaIn 3s ease-out forwards, float 5s ease-in-out infinite 3s;
+  transform: translateY(200px) scale(.85);
+  opacity: 0;
+}
+
+@keyframes santaIn {
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.santa-wrapper img {
+  width: 190px;
+  filter: drop-shadow(0 30px 45px rgba(0,0,0,.85));
+}
+
+/* 💻 Editor */
+.editor {
+  background: #020617;
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 13px;
+  color: var(--accent);
+  position: relative;
+  z-index: 3;
+}
+
+.editor-header { margin-bottom: 8px; }
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+pre {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow: hidden;
+  animation: typing 6s steps(70) forwards;
+}
+
+@keyframes typing {
+  from { max-height: 0; }
+  to   { max-height: 420px; }
+}
+
+/* ✍️ Firma */
+.signature {
+  margin-top: 18px;
+  text-align: right;
+  font-size: 12px;
+  color: var(--gold);
+  opacity: 0;
+  animation: signIn 2s ease-out forwards;
+  animation-delay: 6.5s;
+}
+
+@keyframes signIn {
+  to {
+    opacity: 1;
+    transform: translateY(-6px);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="aurora"></div>
+
+<div class="card">
+
+  <div class="title">✨ Feliz Navidad ✨</div>
+
+  <div class="santa-wrapper">
+    <img src="https://usagif.com/wp-content/uploads/2021/4fh5wi/santa-claus-24.gif" alt="Papá Noel">
+  </div>
+
+  <div class="editor">
+    <div class="editor-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+
+<pre>
+const today = "Navidad";
+
+if (today === "Navidad") {
+  console.log("Que la noche brille más que el día,");
+  console.log("que la calma gane al ruido,");
+  console.log("y que lo mejor aún esté por venir ✨");
+}
+</pre>
+
+    <div class="signature">
+     👋 Luis Daniel
+    </div>
+  </div>
+</div>
+
+<script>
+for (let i = 0; i < 40; i++) {
+  const snow = document.createElement("div");
+  snow.className = "snowflake";
+  snow.textContent = "❄";
+  snow.style.left = Math.random() * 100 + "vw";
+  snow.style.fontSize = 8 + Math.random() * 12 + "px";
+  snow.style.animationDuration = 4 + Math.random() * 6 + "s";
+  document.body.appendChild(snow);
+}
+</script>
+
+</body>
+</html>
